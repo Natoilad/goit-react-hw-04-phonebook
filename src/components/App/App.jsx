@@ -1,4 +1,3 @@
-// import { Component } from 'react';
 import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactList } from '../ContactList/ContactList';
@@ -17,33 +16,13 @@ export const App = () => {
     () => JSON.parse(window.localStorage.getItem(CONTATCTS)) ?? initialContacts
   );
   const [filter, setFilter] = useState('');
-  // state = {
-  //   contacts: [],
-  //   filter: '',
-  // };
 
   useEffect(() => {
     window.localStorage.setItem(CONTATCTS, JSON.stringify(contacts));
   }, [contacts]);
 
-  // componentDidMount() {
-  //   const localContact = localStorage.getItem(CONTATCTS);
-  //   if (localContact !== null) {
-  //     const tempDate = JSON.parse(localContact);
-  //     this.setState({ contacts: tempDate });
-  //   } else {
-  //     this.setState({ contacts: initialContacts });
-  //   }
-  // }
-  // componentDidUpdate(_, prevState) {
-  //   if (prevState.contacts !== this.state.contacts) {
-  //     localStorage.setItem(CONTATCTS, JSON.stringify(this.state.contacts));
-  //   }
-  // }
   const handleChange = evt => {
-    // const { name, value } = evt.target;
     setFilter(evt.currentTarget.value);
-    // this.setState({ [name]: value });
   };
   const addContact = (nameContact, number) => {
     if (
@@ -60,23 +39,15 @@ export const App = () => {
           { id: nanoid(), name: nameContact, number: number },
         ];
       });
-      // this.setState(prevstate => {
-      //   const arr = [...prevstate.contacts];
-      //   arr.push({ id: nanoid(), name: nameContact, number: number });
-      //   return { contacts: arr };
-      // });
     }
   };
   const filterContact = e => {
-    // const { contacts, filter } = this.state;
-
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     return filteredContacts;
   };
   const delContact = id => {
-    // const { contacts } = this.state;
     const filtred = contacts.filter(item => item.id !== id);
     setContacts(filtred);
   };
